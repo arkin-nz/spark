@@ -236,6 +236,12 @@ class Spark41ConnectIcebergQuirks(Spark41ConnectQuirks):
 class SparkEmr8ConnectQuirks(Spark4ConnectQuirks):
     short_version = "emr-8.0-connect"
 
+    features = Spark4ConnectQuirks.features.with_values(
+        secondary_catalog=None,
+        secondary_catalog_schema=None,
+        secondary_schema=None,
+    )
+
     setup = model.DriverSetup(
         database={
             "uri": model.FromEnv("SPARK_CONNECT_URI"),
